@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Reservations</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .table thead {
+      background-color: #1c2c59;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Manage Your Reservations</h2>
+
+  <table class="table table-bordered bg-white">
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Flight</th>
+        <th>From → To</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Seat</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>#12345</td>
+        <td>AirJet</td>
+        <td>New York → London</td>
+        <td>2025-05-10</td>
+        <td>09:00 AM</td>
+        <td>12A</td>
+        <td><span class="text-success">Booked</span></td>
+        <td>
+          <button class="btn btn-sm btn-danger" onclick="alert('Booking cancelled!')">Cancel</button>
+        </td>
+      </tr>
+      <tr>
+        <td>#12346</td>
+        <td>SkyFly</td>
+        <td>Paris → Tokyo</td>
+        <td>2025-05-12</td>
+        <td>01:00 PM</td>
+        <td>8C</td>
+        <td><span class="text-danger">Cancelled</span></td>
+        <td><em>No actions</em></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+
+  <h2>Booking Confirmation</h2>
+  
+  <div id="confirmationDetails">
+    <!-- Confirmation details will be inserted dynamically -->
+  </div>
+
+  <script>
+    // Retrieve booking details from localStorage
+    const flightId = localStorage.getItem("flightId");
+    const origin = localStorage.getItem("origin");
+    const destination = localStorage.getItem("destination");
+    const departureDate = localStorage.getItem("departureDate");
+    const price = localStorage.getItem("price");
+    const name = localStorage.getItem("name");
+    const email = localStorage.getItem("email");
+    const phone = localStorage.getItem("phone");
+    const seat = localStorage.getItem("seat");
+
+    // Display booking details
+    const confirmationDetails = `
+      <h4>Thank you for booking with us!</h4>
+      <p><strong>Flight:</strong> ${origin} → ${destination}</p>
+      <p><strong>Departure Date:</strong> ${departureDate}</p>
+      <p><strong>Seat:</strong> ${seat}</p>
+      <p><strong>Total Amount Paid:</strong> $${price}</p>
+
+      <h5>Passenger Information</h5>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+    `;
+
+    document.getElementById("confirmationDetails").innerHTML = confirmationDetails;
+  </script>
+
+  <a href="index.html" class="btn btn-primary mt-4">Back to Home</a>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

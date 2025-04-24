@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Seat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+         body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f0f2f5;
+        }
+        .navbar {
+            background-color: #002b5c;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .seat {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #002b5c; /* blue for available */
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .seat.booked {
+            background-color: #f44336; /* red for booked */
+            cursor: not-allowed;
+        }
+
+        .seat.selected {
+            background-color: #ff9800; /* orange for selected */
+            transform: scale(1.1); /* Slightly enlarges the selected seat */
+        }
+
+        .seat:hover {
+            background-color: #64b5f6; /* Light blue on hover for available seats */
+        }
+
+        .seat.selected:hover {
+            background-color: #ffb74d; /* Light orange on hover for selected seats */
+        }
+
+      
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="index.html">AirlineReserve</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                <li class="nav-item"><a class="nav-link" href="booking.html">Bookings</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="backend/manage_reservation_view.php">Manage Reservations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 text-center">
+        <h3>Select Your Seat</h3>
+        <div id="seat-map" class="d-flex flex-wrap justify-content-center"></div>
+        <button id="confirm" class="btn btn-primary mt-3">Confirm Seat</button>
+    </div>
+
+    
+<footer style="margin-top: 299px; background: #002b5c; color: white; padding: 15px 0; text-align: center; width: 100%;">
+    &copy; 2025 Airline Reservation System. All rights reserved.
+</footer>
+    <script>
+        const flightId = 123; // example flight_id
+
+        fetch(`backend/get_seats.php?flight_id=${flightId}`)
+            .then(response => response.json())
+            .then(seats => {
+                const seatMap = document.getElementById("seat-map");
+
+                seats.forEach(seat => {
+                    const seatDiv = document.createElement("div");
+                    seatDiv.textContent = seat.seat_number;
+                    seatDiv.className = "seat";
+                    if (seat.status === "booked") {
+                        seatDiv.classList.add("booked");
+                    }
+                    seatDiv.addEventListener("click", () => {
+                        if (!seatDiv.classList.contains("booked")) {
+                            document.querySelectorAll(".seat").forEach(s => s.classList.remove("selected"));
+                            seatDiv.classList.add("selected");
+                        }
+                    });
+                    seatMap.appendChild(seatDiv);
+                });
+            });
+
+        document.getElementById("confirm").addEventListener("click", () => {
+            const selected = document.querySelector(".seat.selected");
+            if (!selected) return alert("Select a seat first!");
+
+            const seatNumber = selected.textContent;
+            
+fetch('backend/book_seat.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `flight_id=${flightId}&seat_number=${seatNumber}`
+})
+            .then(res => res.text())
+            .then(msg => {
+                alert(msg); // Show success message
+                // Redirect to the homepage
+                window.location.href = 'index.html'; // Assuming 'index.html' is your homepage
+            });
+        });
+    </script>
+
+</body>
+</html>

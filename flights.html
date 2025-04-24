@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Flights - Airline Reservation System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f0f2f5;
+    }
+
+    .navbar {
+      background-color: #002b5c;
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+
+    .flight-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .btn-book {
+      background-color: #002b5c;
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      width: 100%;
+    }
+
+    .btn-book:hover {
+      background-color: #004b87;
+    }
+
+  
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">AirlineReserve</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item active"><a class="nav-link" href="flights.html">Flights</a></li>
+            <li class="nav-item"><a class="nav-link" href="booking.html">Bookings</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="backend/manage_reservation_view.php">Manage Reservations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+  <!-- Available Flights -->
+  <div class="container mt-5">
+    <h2 class="text-center">Available Flights</h2>
+
+    <div id="flights"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background: #002b5c; color: white; padding: 15px 0; text-align: center; width: 100%;">
+    &copy; 2025 Airline Reservation System. All rights reserved.
+</footer>
+
+  <!-- jQuery & Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Get search data from localStorage
+    var origin = localStorage.getItem('searchOrigin');
+    var destination = localStorage.getItem('searchDestination');
+    var date = localStorage.getItem('searchDate');
+
+    // Display search information
+    document.title = origin + " to " + destination;
+
+    // Create mock data for flights (you can replace this with dynamic data from your database)
+    var flights = [
+      { flight: "Flight 1: " + origin + " to " + destination, departure: date, price: "$550" },
+      { flight: "Flight 2: " + origin + " to " + destination, departure: date, price: "$650" },
+      { flight: "Flight 3: " + origin + " to " + destination, departure: date, price: "$700" }
+    ];
+
+    // Render flights
+    flights.forEach(function(flight) {
+      $('#flights').append(`
+        <div class="flight-card">
+          <h4>${flight.flight}</h4>
+          <p><strong>Departure:</strong> ${flight.departure}</p>
+          <p><strong>Price:</strong> ${flight.price}</p>
+          <button class="btn-book" onclick="selectFlight('${flight.flight}')">Select This Flight</button>
+        </div>
+      `);
+    });
+
+    // Function to select flight and store it in localStorage
+    function selectFlight(flightDetails) {
+      localStorage.setItem('selectedFlight', flightDetails);
+      window.location.href = "booking.html"; }
+ </script>
+
+
+</body> </html>

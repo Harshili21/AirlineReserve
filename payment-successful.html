@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Successful - Airline Reservation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f0f2f5;
+        }
+        .navbar {
+            background-color: #002b5c;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .payment-success {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 100px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success-icon {
+            color: green;
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #002b5c;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn-home, .btn-seat-map {
+            background-color: #002b5c;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px;
+        }
+        .btn-home:hover, .btn-seat-map:hover {
+            background-color: #004b87;
+        }
+        footer {
+            background: #002b5c;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">AirlineReserve</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="payment-success">
+        <i class="fas fa-check-circle success-icon"></i>
+        <h2>Payment Successful!</h2>
+        <p>Your booking has been confirmed and your payment has been processed successfully. You will receive a confirmation email with your booking details shortly.</p>
+        
+        <!-- Two options to choose from -->
+        <a href="index.html" class="btn-home">Go to Homepage</a>
+        <a href="seat-map.html" class="btn-seat-map">Go to Seat Map</a>
+    </div>
+
+    <footer>
+        &copy; 2025 Airline Reservation System. All rights reserved.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
